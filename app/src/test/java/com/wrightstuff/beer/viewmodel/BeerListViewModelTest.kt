@@ -1,9 +1,12 @@
 package com.wrightstuff.beer.viewmodel
 
 import android.content.Context
+import com.nhaarman.mockitokotlin2.verify
 import com.wrightstuff.domain.beer.repo.BeerRepository
 import com.wrightstuff.screens.beerlist.BeerListViewModel
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
@@ -28,4 +31,12 @@ class BeerListViewModelTest {
         this.beerListViewModel = BeerListViewModel(context, beerRepository)
     }
 
+    @Test
+    fun `refresh beers test`() = runBlocking {
+        beerListViewModel.refreshBeer()
+        assert(beerListViewModel.beers.value == null)
+        verify(beerRepository).retrieveBeerList()
+    }
+
+    //onbeerselected is a ui test not a unit test
 }
