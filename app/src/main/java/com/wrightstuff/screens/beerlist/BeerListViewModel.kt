@@ -29,7 +29,7 @@ class BeerListViewModel @Inject constructor(private val context: Context, privat
         when (it) {
             is BeerStatus.BeersRetrieved -> _beers.postValue(it.beers)
             is BeerStatus.ErrorOccured -> {
-                Toast.makeText(context, "Error getting beers :(  ${it.error}", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Error getting beers!\n${it.error}", Toast.LENGTH_LONG).show()
                 loge("Error occured: ${it.error}")
             }
         }

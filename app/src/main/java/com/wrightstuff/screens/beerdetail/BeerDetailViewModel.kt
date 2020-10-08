@@ -18,7 +18,7 @@ class BeerDetailViewModel @Inject constructor(private val context: Context, priv
     private val _singleBeer: MutableLiveData<Beer> = MutableLiveData()
     val singleBeer: LiveData<Beer> = _singleBeer
 
-     var error_text: String? = null
+    var error_text: String? = null
 
     /*Observers*/
     private val beerObserver = Observer<BeerStatus> {
@@ -26,6 +26,7 @@ class BeerDetailViewModel @Inject constructor(private val context: Context, priv
             is BeerStatus.SingleBeerRetrieved -> _singleBeer.postValue(it.beer)
             is BeerStatus.ErrorOccured -> {
                 error_text = it.error
+                Toast.makeText(context, "Failed to retrieve beer!\n$error_text", Toast.LENGTH_LONG).show()
                 loge("Error occured: ${it.error}")
             }
             else -> loge("Unknown result has occured : $it")
