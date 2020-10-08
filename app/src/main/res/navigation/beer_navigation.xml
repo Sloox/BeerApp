@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/beer_navigation"
+    app:startDestination="@+id/nav_beer_list">
+
+    <fragment
+        android:id="@+id/nav_beer_list"
+        android:name="com.wrightstuff.screens.beerlist.BeerListFragment"
+        android:label="@string/nav_beer_list_fragment"
+        tools:layout="@layout/fragment_beer_gallery">
+        <action
+            android:id="@+id/action_nav_to_details"
+            app:destination="@id/nav_beer_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_beer_details"
+        android:name="com.wrightstuff.screens.beerdetail.BeerDetailFragment"
+        android:label="@string/nav_beer_details"
+        tools:layout="@layout/fragment_beer_details" />
+
+</navigation>

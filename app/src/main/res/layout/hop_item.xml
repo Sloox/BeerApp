@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/beer_margin_small"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:text="60 c" />
+
+        <TextView
+            android:id="@+id/hop_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/beer_margin_small"
+            tools:text=" for 100 s" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/hop_add"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:text="60 c" />
+
+    <TextView
+        android:id="@+id/hop_attribute"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:text=" for 100 s" />
+
+    <View
+        android:id="@+id/item_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/beer_margin"
+        android:layout_marginTop="@dimen/beer_margin_small"
+        android:layout_marginEnd="@dimen/beer_margin"
+        android:layout_marginBottom="@dimen/beer_margin_small"
+        android:background="@color/grey" />
+
+</LinearLayout>

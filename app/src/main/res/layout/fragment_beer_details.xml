@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.wrightstuff.screens.beerdetail.BeerDetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/beer_margin_extra_small"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.singleBeer != null ? View.VISIBLE : View.GONE}"
+            tools:visibility="visible">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="@dimen/btn_corner_radius"
+                app:cardElevation="@dimen/cardview_default_elevation"
+                app:cardUseCompatPadding="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/beer_margin_small">
+
+                    <ImageView
+                        android:id="@+id/beerView"
+                        android:layout_width="@dimen/beer_picture_width"
+                        android:layout_height="@dimen/beer_picture_height"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/item_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:paddingStart="@dimen/beer_margin"
+                        android:paddingEnd="@dimen/beer_margin"
+                        android:text="@{viewModel.singleBeer.name}"
+                        android:textSize="@dimen/text_title_size"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toRightOf="@id/beerView"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Some random beer name" />
+
+                    <TextView
+                        android:id="@+id/item_tagline"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/item_title"
+                        android:paddingStart="@dimen/beer_margin"
+                        android:paddingEnd="@dimen/beer_margin"
+                        android:scrollHorizontally="true"
+                        android:text="@{viewModel.singleBeer.tagline}"
+                        android:textStyle="italic"
+                        app:layout_constraintLeft_toRightOf="@id/beerView"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/item_title"
+                        tools:text="Some random tagline here!" />
+
+                    <TextView
+                        android:id="@+id/item_abv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/item_title"
+                        android:paddingStart="@dimen/beer_margin_small"
+                        android:paddingEnd="@dimen/beer_margin_small"
+                        android:text="@{`ABV:`+String.valueOf(viewModel.singleBeer.abv)+'%'}"
+                        app:layout_constraintLeft_toRightOf="@id/beerView"
+                        app:layout_constraintTop_toBottomOf="@id/item_tagline"
+                        tools:text="abv:50%" />
+
+                    <TextView
+                        android:id="@+id/item_ibu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/item_title"
+                        android:paddingStart="@dimen/beer_margin_small"
+                        android:paddingEnd="@dimen/beer_margin_small"
+                        android:text="@{`IBU:`+String.valueOf(viewModel.singleBeer.ibu)}"
+                        app:layout_constraintLeft_toRightOf="@id/item_abv"
+                        app:layout_constraintTop_toBottomOf="@id/item_tagline"
+                        tools:text="ibu:2500" />
+
+                    <TextView
+                        android:id="@+id/item_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/item_title"
+                        android:paddingStart="@dimen/beer_margin_small"
+                        android:paddingEnd="@dimen/beer_margin_small"
+                        android:text="@{`DOB:`+ viewModel.singleBeer.firstBrewed}"
+                        app:layout_constraintLeft_toRightOf="@id/item_ibu"
+                        app:layout_constraintTop_toBottomOf="@id/item_tagline"
+                        tools:text="DOB:jan/2017" />
+
+                    <TextView
+                        android:id="@+id/item_description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/item_title"
+                        android:paddingStart="@dimen/beer_margin_small"
+                        android:paddingEnd="@dimen/beer_margin_small"
+                        android:scrollHorizontally="true"
+                        android:text="@{viewModel.singleBeer.description}"
+                        app:layout_constraintLeft_toRightOf="@id/beerView"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/item_abv"
+                        tools:text="This is the details of the tasty tasty beer" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!--Display all Malts in a list-->
+            <!--Display all Hops in a list-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="@dimen/btn_corner_radius"
+                app:cardElevation="@dimen/cardview_default_elevation"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/beer_margin_small">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/beer_margin"
+                        android:paddingEnd="@dimen/beer_margin"
+                        android:text="@string/ingredients_title"
+                        android:textSize="@dimen/text_title_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@{`Yeast: `+ viewModel.singleBeer.ingredients.yeast}"
+                        android:visibility="@{viewModel.singleBeer.ingredients.yeast != null ?  View.VISIBLE: View.GONE}"
+                        tools:text="Yeast: Normal" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/malts"
+                        android:textSize="@dimen/text_title_size"
+                        android:textStyle="italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_malts"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:fitsSystemWindows="false"
+                        android:overScrollMode="never"
+                        android:scrollbars="vertical"
+                        app:items="@{viewModel.singleBeer.ingredients.malt}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/hops"
+                        android:textSize="@dimen/text_title_size"
+                        android:textStyle="italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_hops"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:fitsSystemWindows="false"
+                        android:overScrollMode="never"
+                        android:scrollbarThumbVertical="@android:color/darker_gray"
+                        android:scrollbars="vertical"
+                        app:items="@{viewModel.singleBeer.ingredients.hops}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <!--Display all Methods in a list-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="@{viewModel.singleBeer.method != null ? View.VISIBLE: View.GONE}"
+                app:cardCornerRadius="@dimen/btn_corner_radius"
+                app:cardElevation="@dimen/cardview_default_elevation"
+                app:cardUseCompatPadding="true"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/beer_margin_small">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/beer_margin"
+                        android:paddingEnd="@dimen/beer_margin"
+                        android:text="@string/method_title"
+                        android:textSize="@dimen/text_title_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@{`Fermentation temp: `+ String.valueOf(viewModel.singleBeer.method.fermentation.temp.value) +` `+viewModel.singleBeer.method.fermentation.temp.unit}"
+                        tools:text="fermentation temp: 32" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@{`twist: `+ viewModel.singleBeer.method.twist}"
+                        android:visibility="@{viewModel.singleBeer.method.twist != null ?  View.VISIBLE: View.GONE}"
+                        tools:text="twist: any" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/mash_temp"
+                        android:textSize="@dimen/text_title_size"
+                        android:textStyle="italic" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_methods"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:fitsSystemWindows="false"
+                        android:overScrollMode="never"
+                        android:scrollbarThumbVertical="@android:color/darker_gray"
+                        android:scrollbars="vertical"
+                        app:items="@{viewModel.singleBeer.method}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</layout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginStart="@dimen/beer_margin_small"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/mash_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingEnd="@dimen/beer_margin_small"
+        tools:text="60 c" />
+
+    <TextView
+        android:id="@+id/mash_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:text=" for 100 s" />
+
+</LinearLayout>

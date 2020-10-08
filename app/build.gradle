@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion rootProject.ext.targetSdkVersion
+    buildToolsVersion rootProject.ext.buildtoolsVersion
+
+    defaultConfig {
+        applicationId "com.wrightstuff.beer"
+        minSdkVersion rootProject.ext.minSDKVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_android"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines"
+
+    //ui
+    implementation "com.google.android.material:material:$material"
+
+    //androidx
+    implementation "androidx.appcompat:appcompat:$androidx_library"
+    implementation "androidx.core:core-ktx:$androidx_corektx"
+    implementation "androidx.constraintlayout:constraintlayout:$androidx_constraint"
+    implementation "androidx.recyclerview:recyclerview:$androidx_library"
+    implementation "androidx.annotation:annotation:$androidx_library"
+    implementation "android.arch.lifecycle:extensions:$androidx_library_lifecycle_extensions"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_viewmodel"
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment:$androidx_navigation"
+    implementation "androidx.navigation:navigation-ui:$androidx_navigation"
+    implementation "androidx.navigation:navigation-fragment-ktx:$androidx_navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$androidx_navigation"
+
+    //DI
+    implementation "com.google.dagger:dagger:$dagger"
+    kapt "com.google.dagger:dagger-compiler:$dagger"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide"
+
+    //GSON
+    implementation "com.google.code.gson:gson:$gson"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$refresh"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+}

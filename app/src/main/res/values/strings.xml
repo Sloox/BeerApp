@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Beer</string>
+    <string name="nav_beer_list_fragment">Beer List</string>
+    <string name="nav_beer_details">Beer Details</string>
+    <string name="method_title">Method</string>
+    <string name="mash_temp">Mash Temp</string>
+    <string name="malts">Malts</string>
+    <string name="ingredients_title">Ingredients</string>
+    <string name="hops">Hops</string>
+</resources>
